@@ -275,6 +275,9 @@ footer .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32p
 footer h4 { margin: 0 0 14px; font-weight: 400; }
 footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 14px; }
 footer li a:hover { color: var(--grey); }
+footer li a { position: relative; display: inline-block; }
+footer li a::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+footer li a:hover::after { transform: scaleX(1); }
 .big { font-size: 28px; line-height: 1.05; letter-spacing: -.035em; max-width: 12ch; } .big em { font-style: normal; color: var(--grey-dim); }
 .legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 56px; font-size: 12px; color: var(--grey-dim); }
 
@@ -285,7 +288,10 @@ nav.dock a { padding: 8px 14px; border-radius: 999px; font-size: 12px; color: va
 nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; color: var(--fg); }
 
 /* case study view (stub page) */
-#view { position: fixed; inset: 0; z-index: 40; background: var(--bg); overflow-y: auto; padding-block: calc(24px + env(safe-area-inset-top, 0px)) calc(60px + env(safe-area-inset-bottom, 0px)); }
+#view { position: fixed; inset: 0; z-index: 40; background: var(--bg); overflow-y: auto; padding-block: calc(24px + env(safe-area-inset-top, 0px)) calc(60px + env(safe-area-inset-bottom, 0px)); transform: translateY(100%); transition: transform 0.52s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease; opacity: 0; pointer-events: none; }
+#view.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+#view-backdrop { position: fixed; inset: 0; z-index: 39; background: rgba(0,0,0,0.45); opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+#view-backdrop.is-open { opacity: 1; pointer-events: auto; }
 #view .bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 56px; }
 #view h1 { margin: 20px 0 0; font-weight: 400; font-size: clamp(40px, 8vw, 104px); line-height: .96; letter-spacing: -.045em; max-width: 14ch; text-wrap: balance; }
 #view .meta { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 48px; }
@@ -545,7 +551,8 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   <a href="#home" class="on">Home</a><a href="#services">Services</a><a href="#work">Work</a><a href="#team">Team</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a>
 </nav>
 
-<div id="view" hidden role="dialog" aria-modal="true" aria-label="Case study"></div>
+<div id="view-backdrop"></div>
+<div id="view" role="dialog" aria-modal="true" aria-label="Case study"></div>
 <div id="wipe" aria-hidden="true"></div>
 
 <script>
@@ -766,12 +773,17 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   function openCase(n) {
     n = +n; if (!cases[n - 1]) return;
     var was = openN; openN = n; render(n);
-    view.hidden = false; document.documentElement.style.overflow = 'hidden';
+    view.classList.add('is-open');
+    document.getElementById('view-backdrop').classList.add('is-open');
+    document.documentElement.style.overflow = 'hidden';
     try { if (location.hash !== '#case-' + n) location.hash = 'case-' + n; } catch (e) {}
     if (!was) $('#vback', view).focus({ preventScroll: true });
   }
   function closeCase() {
-    openN = 0; view.hidden = true; document.documentElement.style.overflow = '';
+    openN = 0;
+    view.classList.remove('is-open');
+    document.getElementById('view-backdrop').classList.remove('is-open');
+    document.documentElement.style.overflow = '';
     try { if (/^#case-/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
   window.addEventListener('hashchange', function () {
@@ -830,6 +842,25 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   }
   themeBtn.addEventListener('click', function () { applyTheme(current === 'dark' ? 'light' : 'dark'); });
   applyTheme(current);
+
+  /* ---------- magnetic buttons ---------- */
+  document.querySelectorAll('.pill').forEach(function (btn) {
+    var strength = 0.35;
+    btn.addEventListener('mousemove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var dx = (e.clientX - cx) * strength, dy = (e.clientY - cy) * strength;
+      btn.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+    });
+    btn.addEventListener('mouseleave', function () {
+      btn.style.transform = '';
+    });
+  });
+
+  /* ---------- close case study on backdrop click ---------- */
+  document.getElementById('view-backdrop').addEventListener('click', function () {
+    go(closeCase);
+  });
 
 })();
 </script>
