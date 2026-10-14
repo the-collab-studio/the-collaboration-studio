@@ -220,7 +220,7 @@ section { padding-block: 110px; }
 .member .tags { margin-top: 12px; font: 400 11px var(--mono); color: var(--grey-dim); letter-spacing: .06em; text-transform: uppercase; }
 
 /* pricing */
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .plan { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .plan.hot { border-color: #55555a; background: #121213; }
 .plan:hover { border-color: #55555a; }
@@ -318,7 +318,7 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
 
 @media (max-width: 960px) {
   .team, .plans, .quotes { grid-template-columns: 1fr 1fr; }
-  .plans .plan:last-child, .quotes .quote:last-child { grid-column: span 2; }
+  .quotes .quote:last-child { grid-column: span 2; }
   .stat-row { grid-template-columns: 1fr 1fr; row-gap: 28px; }
 }
 @media (max-width: 860px) {
@@ -475,11 +475,11 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   <div class="wrap">
     <div class="head rv"><span class="label">Packages</span><h2>Pick a starting point.</h2></div>
     <div class="plans">
-      <article class="plan fx rv"><div class="top"><span class="label">Starter</span></div><h3>Starter site</h3><div class="price"><small>From</small>$000</div><p>A clean, fast site for a small business or personal brand.</p><ul><li>Up to 5 pages</li><li>Mobile friendly</li><li>Contact form</li><li>Basic SEO</li></ul><a class="pill ghost" href="#contact">Get started <i>→</i></a></article>
-      <article class="plan hot fx rv"><div class="top"><span class="label">Business</span><span class="tag">Most chosen</span></div><h3>Business site</h3><div class="price"><small>From</small>$000</div><p>A full site with content you can edit yourself.</p><ul><li>Up to 12 pages</li><li>Content editor</li><li>Analytics and SEO</li><li>1 month of support</li></ul><a class="pill" href="#contact">Get started <i>→</i></a></article>
-      <article class="plan fx rv"><div class="top"><span class="label">Custom</span></div><h3>Custom system</h3><div class="price"><small>From</small>$000</div><p>Web apps, mobile apps and school systems built to your needs.</p><ul><li>Planning workshop</li><li>Custom features</li><li>Integrations</li><li>Ongoing support plan</li></ul><a class="pill ghost" href="#contact">Talk to us <i>→</i></a></article>
+      <article class="plan fx rv"><div class="top"><span class="label">Essential</span></div><h3>Essential site</h3><div class="price"><small>One-time</small>$200</div><p>A clean, fast site for a small business or personal brand. Up to 5 pages, no recurring fees.</p><ul><li>Up to 5 pages</li><li>Mobile responsive</li><li>Basic SEO setup</li><li>Contact form</li><li>Scales with feature complexity</li></ul><a class="pill ghost" href="#contact">Get started <i>→</i></a></article>
+      <article class="plan hot fx rv"><div class="top"><span class="label">Growth</span><span class="tag">Most chosen</span></div><h3>Growth site</h3><div class="price"><small>One-time</small>$500</div><p>A full site with CMS, advanced SEO, and GSAP animations. Up to 10 pages, no recurring fees.</p><ul><li>Up to 10 pages</li><li>CMS integration</li><li>Advanced SEO</li><li>GSAP animations</li><li>Scales with feature complexity</li></ul><a class="pill" href="#contact">Get started <i>→</i></a></article>
+      <article class="plan fx rv"><div class="top"><span class="label">Enterprise</span></div><h3>Enterprise site</h3><div class="price"><small>One-time</small>$800</div><p>Unlimited pages, e-commerce ready, full SEO strategy, and priority support. No recurring fees.</p><ul><li>Unlimited pages</li><li>E-commerce ready</li><li>Full SEO strategy</li><li>Priority support</li><li>Scales with feature complexity</li></ul><a class="pill ghost" href="#contact">Get started <i>→</i></a></article>
+      <article class="plan fx rv"><div class="top"><span class="label">Bespoke</span></div><h3>Custom system</h3><div class="price"><small>Tailored</small>Quote</div><p>Web apps, mobile apps, school systems, and API-heavy platforms built to your exact specification.</p><ul><li>Custom architecture</li><li>API integrations</li><li>Dedicated dev team</li><li>SLA agreement</li><li>Priced by feature complexity</li></ul><a class="pill ghost" href="#contact">Talk to us <i>→</i></a></article>
     </div>
-    <p class="ph-note">[ Placeholder pricing. Replace with your real packages. ]</p>
   </div>
 </section>
 
