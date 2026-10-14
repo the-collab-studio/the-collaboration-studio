@@ -421,7 +421,7 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   <div class="pin">
     <div class="wrap" style="width:100%"><div class="head"><span class="label">Selected work</span><h2>Things we've built together.</h2></div></div>
     <div class="work-track" id="track">
-      <button class="work-card fx" data-case="1"><div class="vis v1"></div><div class="info"><span class="label">Web app</span><h3>Project One</h3><p>A booking platform for a local business. Placeholder description.</p><span class="more">View case study →</span></div></button>
+      <button class="work-card fx" data-case="1"><div class="vis v1"></div><div class="info"><span class="label">Full Stack</span><h3>Apple</h3><p>A pixel-faithful Apple website clone built with React, Vite, and i18n. Multi-language, animated, fully responsive.</p><span class="more">View case study →</span></div></button>
       <button class="work-card fx" data-case="2"><div class="vis v2"></div><div class="info"><span class="label">School system</span><h3>Project Two</h3><p>Student records and reporting for a school. Placeholder description.</p><span class="more">View case study →</span></div></button>
       <button class="work-card fx" data-case="3"><div class="vis v3"></div><div class="info"><span class="label">Mobile app</span><h3>Project Three</h3><p>An ordering app for a retail brand. Placeholder description.</p><span class="more">View case study →</span></div></button>
       <button class="work-card fx" data-case="4"><div class="vis v4"></div><div class="info"><span class="label">Website</span><h3>Project Four</h3><p>A company site with a content editor. Placeholder description.</p><span class="more">View case study →</span></div></button>
@@ -722,11 +722,14 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   /* ---------- case study stub pages ---------- */
   var view = $('#view'), openN = 0;
   var cases = [
-    { t: 'Project One', c: 'Web app', v: 'v1', client: 'Client name', yr: '2026', role: 'Design and development', stack: 'React · Node · PostgreSQL',
-      sum: 'Placeholder: a booking platform that replaced phone calls and paper diaries.',
-      ch: 'Placeholder: describe the problem the client had and why it mattered to their business.',
-      so: 'Placeholder: explain what the team designed and built, and how the work was split between developers.',
-      re: ['Placeholder result: a measurable improvement', 'Placeholder result: time or cost saved', 'Placeholder result: what the client said'] },
+    { t: 'Apple', c: 'Full Stack', v: 'v1', client: 'Personal project', yr: '2025', role: 'Full Stack Development',
+      stack: 'React · Vite · i18n · Framer Motion',
+      img: 'https://munyaradzichakwenya60-coder.github.io/apple-clone-v2/images/hero-iphone-family.jpg',
+      url: 'https://munyaradzichakwenya60-coder.github.io/apple-clone-v2/',
+      sum: 'A pixel-faithful clone of the Apple website, rebuilt from the ground up with React and Vite. Features multi-language support, animated product heroes, and fully responsive product pages.',
+      ch: 'Recreating Apple\'s design system — its motion language, typographic precision, and product-detail pages — without access to their codebase or assets required reverse-engineering every interaction from scratch.',
+      so: 'Built a full React + Vite SPA with react-i18next for internationalisation, Framer Motion for scroll-driven animations, and scraped product data structured into reusable components. Each product page is dynamically rendered from a JSON data layer.',
+      re: ['Pixel-accurate reproduction of Apple\'s hero layout and product pages', 'Multi-language support across 3 locales', 'Deployed to GitHub Pages with automated CI'] },
     { t: 'Project Two', c: 'School system', v: 'v2', client: 'School name', yr: '2026', role: 'Full build and training', stack: 'Laravel · MySQL',
       sum: 'Placeholder: student records, attendance and reports in one system.',
       ch: 'Placeholder: describe how the school managed records before and what slowed them down.',
@@ -749,12 +752,13 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
       '<div class="wrap"><div class="bar"><button class="pill ghost" id="vback"><i>←</i> Back to work</button><span class="label">Case study</span></div>' +
       '<span class="label">' + c.c + '</span><h1>' + c.t + '</h1>' +
       '<div class="meta"><div><span class="label">Client</span><b>' + c.client + '</b></div><div><span class="label">Year</span><b>' + c.yr + '</b></div><div><span class="label">Role</span><b>' + c.role + '</b></div><div><span class="label">Stack</span><b>' + c.stack + '</b></div></div>' +
-      '<div class="shot ' + c.v + '"></div>' +
+      '<div class="shot ' + c.v + '">' + (c.img ? '<img src="' + c.img + '" alt="' + c.t + '" style="width:100%;height:100%;object-fit:cover;display:block;">' : '') + '</div>' +
       '<div class="body">' +
       '<div class="rowp"><div class="k"><span class="label">Overview</span></div><div class="v"><p>' + c.sum + '</p></div></div>' +
       '<div class="rowp"><div class="k"><span class="label">Challenge</span></div><div class="v"><p>' + c.ch + '</p></div></div>' +
       '<div class="rowp"><div class="k"><span class="label">Solution</span></div><div class="v"><p>' + c.so + '</p></div></div>' +
       '<div class="rowp"><div class="k"><span class="label">Results</span></div><div class="v"><ul>' + c.re.map(function (r) { return '<li>' + r + '</li>'; }).join('') + '</ul></div></div>' +
+      (c.url ? '<div class="rowp"><div class="k"><span class="label">Live site</span></div><div class="v"><a href="' + c.url + '" target="_blank" rel="noopener" class="pill" style="display:inline-flex;text-decoration:none;margin-top:4px;">Visit ↗</a></div></div>' : '') +
       '</div>' +
       '<button class="next" data-case="' + (n % cases.length + 1) + '"><span class="label">Next project</span><strong>' + nx.t + ' →</strong></button></div>';
     view.scrollTop = 0;
