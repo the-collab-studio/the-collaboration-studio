@@ -75,8 +75,16 @@
 [data-theme="light"] .v3 { background-image: radial-gradient(#b0b0ac 1.2px, transparent 1.6px); background-size: 16px 16px; }
 [data-theme="light"] .v4 { background: repeating-linear-gradient(45deg, #c4c4c0 0 1px, transparent 1px 13px); }
 
+/* light mode marquees */
+[data-theme="light"] .marq span { -webkit-text-stroke: 1px #8c8c91; }
+[data-theme="light"] .marq b { background: #8c8c91; }
+[data-theme="light"] .marq.small span { background: rgba(234,234,232,.85); border-color: var(--line); color: var(--grey); }
+@media (hover: hover) and (pointer: fine) {
+  [data-theme="light"] .marq.small span:hover { background: var(--fg); color: #fff; border-color: var(--fg); }
+}
+
 /* smooth theme transition (skip canvas) */
-body, header, footer, section, nav, .card, .plan, .member, .quote, .step, .fact, .stat, .work-card, .fld input, .fld select, .fld textarea, #view {
+body, header, footer, section, nav, .card, .plan, .member, .quote, .step, .fact, .stat, .work-card, .fld input, .fld select, .fld textarea, #view, .marq.small span {
   transition: background .3s, border-color .3s, color .3s, box-shadow .3s;
 }
 * { box-sizing: border-box; }
