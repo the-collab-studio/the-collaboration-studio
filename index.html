@@ -83,6 +83,18 @@
   [data-theme="light"] .marq.small span:hover { background: var(--fg); color: #fff; border-color: var(--fg); }
 }
 
+/* light mode cards & interactions */
+[data-theme="light"] .card:hover { border-color: #b8b8b3; background: #dededb; }
+[data-theme="light"] .work-card:hover { border-color: #b8b8b3; }
+[data-theme="light"] .member:hover { border-color: #b8b8b3; }
+[data-theme="light"] .plan.hot { border-color: #b8b8b3; background: #dededb; }
+[data-theme="light"] .plan:hover { border-color: #b8b8b3; }
+[data-theme="light"] .plan .tag { background: var(--fg); color: #fff; }
+[data-theme="light"] .qa.open .plus::before, [data-theme="light"] .qa.open .plus::after { background: #fff; }
+[data-theme="light"] .fx::before { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.6), transparent 62%); }
+[data-theme="light"] .fld input, [data-theme="light"] .fld select, [data-theme="light"] .fld textarea { background: #eaeae7; border-color: var(--line); color: var(--fg); }
+[data-theme="light"] .fld input:focus, [data-theme="light"] .fld select:focus, [data-theme="light"] .fld textarea:focus { border-color: var(--grey); }
+
 /* smooth theme transition (skip canvas) */
 body, header, footer, section, nav, .card, .plan, .member, .quote, .step, .fact, .stat, .work-card, .fld input, .fld select, .fld textarea, #view, .marq.small span {
   transition: background .3s, border-color .3s, color .3s, box-shadow .3s;
