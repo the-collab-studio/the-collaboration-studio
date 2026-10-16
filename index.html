@@ -588,6 +588,19 @@ nav.dock a:hover { color: var(--fg); } nav.dock a.on { background: #26262a; colo
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clamp = function (v) { return Math.min(1, Math.max(0, v)); };
 
+  /* ---------- randomize team members on load ---------- */
+  var teamEl = $('.team');
+  if (teamEl) {
+    var members = Array.prototype.slice.call(teamEl.children);
+    for (var i = members.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = members[i];
+      members[i] = members[j];
+      members[j] = temp;
+    }
+    members.forEach(function (m) { teamEl.appendChild(m); });
+  }
+
   /* ---------- particle backdrop: blob -> two rings on scroll, assembles on load ---------- */
   var cv = $('#cloud'), cx = cv.getContext('2d');
   var N = 2600, pts = [], W = 0, H = 0, dpr = 1, mouse = { x: -9999, y: -9999 }, t0 = performance.now();
