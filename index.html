@@ -132,8 +132,10 @@ header .wrap { display: flex; align-items: center; justify-content: space-betwee
 .marq b { align-self: center; width: 10px; height: 10px; border-radius: 50%; background: #727278; flex: none; }
 .marq.small { padding-block: 16px; border-block: 0; }
 .marq.small .track { gap: 12px; animation-duration: 38s; animation-direction: reverse; }
-.marq.small span { -webkit-text-stroke: 0; color: var(--grey); font: 400 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 999px; padding: 11px 18px; background: rgba(13,13,14,.7); }
-.marq.small span:hover { color: var(--fg); border-color: #3a3a3d; }
+.marq.small span { -webkit-text-stroke: 0; color: var(--grey); font: 400 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--line); border-radius: 999px; padding: 11px 18px; background: rgba(13,13,14,.7); cursor: default; transition: background .2s cubic-bezier(.23,1,.32,1), color .2s cubic-bezier(.23,1,.32,1), border-color .2s cubic-bezier(.23,1,.32,1); }
+@media (hover: hover) and (pointer: fine) {
+  .marq.small span:hover { background: #fff; color: #000; border-color: #fff; }
+}
 @keyframes slide { to { transform: translateX(-50%); } }
 
 /* sections */
