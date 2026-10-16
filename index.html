@@ -89,6 +89,7 @@
 [data-theme="light"] .member:hover { border-color: #b8b8b3; }
 [data-theme="light"] .plan.hot { border-color: #b8b8b3; background: #dededb; }
 [data-theme="light"] .plan:hover { border-color: #b8b8b3; }
+[data-theme="light"] .plans .plan:hover { box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08); }
 [data-theme="light"] .plan .tag { background: var(--fg); color: #fff; }
 [data-theme="light"] .qa.open .plus::before, [data-theme="light"] .qa.open .plus::after { background: #fff; }
 [data-theme="light"] .fx::before { background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.6), transparent 62%); }
@@ -246,9 +247,21 @@ section { padding-block: 110px; }
 
 /* pricing */
 .plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.plan { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 20px; min-width: 0; transition: transform .4s cubic-bezier(.23, 1, .32, 1), filter .4s cubic-bezier(.23, 1, .32, 1), opacity .4s cubic-bezier(.23, 1, .32, 1), border-color .3s, background .3s; }
 .plan.hot { border-color: #55555a; background: #121213; }
 .plan:hover { border-color: #55555a; }
+@media (hover: hover) and (pointer: fine) {
+  .plans:hover > .plan:not(:hover) {
+    filter: blur(8px);
+    transform: scale(0.92);
+    opacity: 0.55;
+  }
+  .plans .plan:hover {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(1.05);
+    z-index: 3;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+  }
+}
 .plan .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .plan .tag { font: 500 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; background: var(--fg); color: #000; padding: 4px 9px; border-radius: 999px; }
 .plan h3 { margin: 0; font-weight: 400; font-size: 26px; letter-spacing: -.03em; }
